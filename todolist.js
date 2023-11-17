@@ -1,7 +1,10 @@
 // representa uma lista de tarefas qualquer
 class ListaTarefas {
+    // cria uma nova lista de tarefas
     constructor(nome_lista){
+        // nome da lista 
         this.nome_lista = nome_lista
+        // array para armazenar as tarefas criadas
         this.tarefas = []
 
     }
@@ -14,15 +17,6 @@ class ListaTarefas {
         this.tarefas.push(tarefa)
     }
 
-    // marca uma tarefa como concluída 
-    marcar_concluida(id){
-        this.tarefas.forEach(element => {
-            if (element.id == id){
-                element.concluida = true
-            }
-        });
-    }
-
     // remove uma tarefa da lista 
     rm_tarefa(id){
         this.tarefas.forEach(element => {
@@ -32,23 +26,25 @@ class ListaTarefas {
         });
     }
 
-    // imprime na tela as tarefas pendentes 
-    ver_tarefas_pendentes(){
-        this.percorrer_tarefas(false)
+    // marca uma tarefa como concluída 
+    marcar_concluida(id){
+        this.tarefas.forEach(element => {
+            if (element.id == id){
+                element.concluida = true
+            }
+        });
     }
 
-    // imprime na tela as tarefas concluídas 
-    ver_tarefas_concluidas(){
-        this.percorrer_tarefas(true)
-    }
-
-    percorrer_tarefas(booleano){
+    // imprime na tela as tarefas pendetes ou concluídas de acordo com o parâmetro fornecido 
+    // false = ver pendentes
+    // true = ver concluídas 
+    ver_tarefas(booleano){
         this.tarefas.forEach(element => {
             if (element.concluida == booleano && element.tipo == "padrao"){
                 console.log(`${element.id}  ${element.desc} ${element.prazo}`)
             }
             if (element.concluida == booleano && element.tipo == "repetitiva"){
-                console.log(`${element.id}  ${element.desc} ${element.freq} ${element.data_inicio}`)
+                console.log(`${element.id}  ${element.desc} ${element.freq} ${element.data_inicio}  ${element.prazo}`)
             }
             if (element.concluida == booleano && element.tipo == "prioritaria"){
                 console.log(`${element.id}  ${element.desc} ${element.prazo} ${element.prioridade}`)
@@ -61,30 +57,43 @@ class ListaTarefas {
 
 }
 
+// representa uma tarefa padrão - serve de superclasse para todos os outros tipos de tarefas
 class TarefaPadrao { 
-    constructor(){
-
+    constructor(desc, prazo){
+        this.id = null
+        this.desc = desc 
+        this.prazo = prazo
+        this.tipo = "padrao"
     }
 
 }
 
-class TarefaRepetitiva {
-    constructor(){
-
+// representa uma tarefa que deve ser feita regulamente
+class TarefaRepetitiva extends TarefaPadrao {
+    constructor(desc, prazo, freq, data_inicio){
+        super(desc, prazo)
+        this.freq = freq 
+        this.data_inicio = data_inicio
+        this.tipo = "repetitiva"
     }
 
 }
 
-class TarefaPrioritaria { 
-    constructor(){
-
+// representa uma tarefa que possui algum nivel de prioridade associada a ela
+class TarefaPrioritaria extends TarefaPadrao { 
+    constructor(desc, prazo, prioridade){
+        super(desc, prazo)
+        this.prioridade = prioridade
+        this.tipo = "prioritaria"
     }
 
 }
 
-class TarefaComEtiqueta { 
-    constructor(){
-
+class TarefaComEtiqueta extends TarefaPadrao { 
+    constructor(desc, prazo, etiquetas){
+        super(desc, prazo)
+        this.etiquetas = etiquetas
+        this.tipo = "etiqueta"
     }
 
 }
