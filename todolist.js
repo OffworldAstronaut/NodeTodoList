@@ -1,12 +1,9 @@
 // representa uma lista de tarefas qualquer
 class ListaTarefas {
     // cria uma nova lista de tarefas
-    constructor(nome_lista){
-        // nome da lista 
-        this.nome_lista = nome_lista
+    constructor(){
         // array para armazenar as tarefas criadas
         this.tarefas = []
-
     }
 
     // adiciona uma tarefa à lista
@@ -97,3 +94,9 @@ class TarefaComEtiqueta extends TarefaPadrao {
     }
 
 }
+
+exports.ListaTarefas = ListaTarefas
+exports.TarefaPadrao = TarefaPadrao
+exports.TarefaRepetitiva = TarefaRepetitiva
+exports.TarefaPrioritaria = TarefaPrioritaria
+exports.TarefaComEtiqueta = TarefaComEtiqueta
