@@ -36,20 +36,22 @@ class ListaTarefas {
     // false = ver pendentes
     // true = ver concluídas 
     ver_tarefas(booleano){
+        console.log('------------------------------------------')
         this.tarefas.forEach(element => {
             if (element.concluida == booleano && element.tipo == "padrao"){
-                console.log(`${element.id}  ${element.desc} ${element.prazo}`)
+                console.log(`${element.id}  ${element.desc}  ${element.prazo}`)
             }
             if (element.concluida == booleano && element.tipo == "repetitiva"){
-                console.log(`${element.id}  ${element.desc} ${element.freq} ${element.data_inicio}  ${element.prazo}`)
+                console.log(`${element.id}  ${element.desc}  ${element.prazo}  ${element.data_inicio}  ${element.freq}`)
             }
             if (element.concluida == booleano && element.tipo == "prioritaria"){
-                console.log(`${element.id}  ${element.desc} ${element.prazo} ${element.prioridade}`)
+                console.log(`${element.id}  ${element.desc}  ${element.prazo}  ${element.prioridade}`)
             }
             if (element.concluida == booleano && element.tipo == "etiqueta"){
-                console.log(`${element.id}  ${element.desc} ${element.prazo} ${element.etiquetas}`)
+                console.log(`${element.id}  ${element.desc}  ${element.prazo}  ${element.etiquetas}`)
             }
         });
+        console.log('------------------------------------------')
     }
 
 }
@@ -61,6 +63,7 @@ class TarefaPadrao {
         this.desc = desc 
         this.prazo = prazo
         this.tipo = "padrao"
+        this.concluida = false
     }
 
 }
